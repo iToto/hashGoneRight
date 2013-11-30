@@ -8,9 +8,10 @@ public class Main
 
 	private Scanner kb = new Scanner(System.in);
 	private String algo="";
-	private boolean loop=false;
 	private String file = "../hash_test_file1.txt"
-	private Table 
+	private char collisionHandlingType="";
+	private boolean loop=false;
+	//private Table 
 
 	public void main (String[] args) 
 	{
@@ -37,17 +38,22 @@ public class Main
 
 		loadFile(file);
 
-		if (algo == 'D')
+		if (algo == "D")
 		{
-			doDoubleHash();
+			setCollisionHandlingType(algo);
 		}
-		else
+		else if( algo == "S")
 		{
-			doSeperateChain();
+			setCollisionHandlingType(algo);
 		}
 
 		
 		
+	}
+
+	private void setCollisionHandlingType(String k)
+	{
+		collisionHandlingType = k;
 	}
 
 	private void loadFile (String file)
@@ -58,17 +64,26 @@ public class Main
 
 	private void doDoubleHashing ()
 	{
+		DoublHash dh = new DoublHash();
+		System.out.println("What kind of empty marker scheme would you like to use: \n" +
+	                       "Available = 'A', \n" +
+	                       "Negative = 'N', \n" +
+	                       "Replace = 'R'. \n" +
+	                       "Selection: ");
+        dh.setEmptyMarkerScheme(kb.nextLine());
+
+		dh.doubleHash(string)
 		// do whats necesary for doublehashing
 		//at some point you're going to call hash() in here or do it in the class?
 	}
 
-	private doSeperateChain ()
+	private void doSeperateChain ()
 	{
 		// do whats necesary for doublehashing
 		//at some point you're going to call hash() in here or do it in the class?
 	}
 
-	private printHashtableStatistics()
+	private void printHashtableStatistics()
 	{
 		//just output all the statistics.
 		System.out.print("The hash table uses ");

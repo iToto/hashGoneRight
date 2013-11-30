@@ -20,6 +20,14 @@ public class SeperateChain
 	}
 
 
-
+	private int collision()
+	{
+		/*
+			while (currentNode.next != null) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = s;
+        */
+	}
 
 }

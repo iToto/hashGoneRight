@@ -8,24 +8,34 @@ public class Hash{
 		// return the key.
 	}
 
-	public void insert(double key)
+
+	public void put(double key)
 	{
-		//insert into the table or array or wtv
+		//todo1: check state of table for resize
+		//todo2: 
 	}
 
-	public void put()
-	{
-
-	}
 
 	private void setRehashThreshold(int loadFactor)
 	{
 
 	}
 
+
 	private void setRehashFactor(int factorOrNumber)
 	{
-		
+
+	}
+
+	private void rehash (int size)
+	{
+		InString[] temp = table;
+        table = new InString[newSize];
+        for (int i = 0; i < temp.length; ++i) {
+            if (table[i] != null)
+                put (temp [i]);
+        }
+        //delete temp;
 	}
 
 }
