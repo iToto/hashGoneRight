@@ -5,15 +5,14 @@ public class DoubleHash{
 	private char emptyMarkerScheme='';
 
 	public void doubleHash(String s) {
-		setEmptyMarkerScheme(marker);
-		Hash value = new Hash();
-        int key = value.hash(s);
+		Hash h = new Hash();
+        int key = h.hash(s);
         int hv1 = hv1(key);
         int hv2 = hv2(key);
 
         if ( table[hv1] == null)
         {
-            insert (s, hv1);
+            h.put (s, hv1);
             //return hv1;
         }
         else
@@ -24,12 +23,12 @@ public class DoubleHash{
     }
 
     
-    private  int hv1(int i){
+    private int hv1(int i){
         return i % table.length;
     }
 
     
-    private  int hv2(int i){
+    private int hv2(int i){
         DoubleHashPrime prime = new DoubleHashPrime();
         int primeNum1 = prime.findPerfectPrime(table.length);
         int primeNum2 = prime.findPerfectPrime(primeNum1);

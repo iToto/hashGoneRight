@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 
 public class Main 
@@ -8,14 +10,13 @@ public class Main
 
 	private Scanner kb = new Scanner(System.in);
 	private String algo="";
-	private String file = "../hash_test_file1.txt"
-	private char collisionHandlingType="";
+	private String file = "../hash_test_file1.txt";
+	public char collisionHandlingType="";
 	private boolean loop=false;
 	//private Table 
 
 	public void main (String[] args) 
 	{
-
 		do
 		{
 			if (loop)
@@ -41,13 +42,13 @@ public class Main
 		if (algo == "D")
 		{
 			setCollisionHandlingType(algo);
+			doDoubleHashing();
 		}
 		else if( algo == "S")
 		{
 			setCollisionHandlingType(algo);
-		}
-
-		
+			doSeperateChain();
+		}		
 		
 	}
 
@@ -71,15 +72,26 @@ public class Main
 	                       "Replace = 'R'. \n" +
 	                       "Selection: ");
         dh.setEmptyMarkerScheme(kb.nextLine());
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line=nul;
 
-		dh.doubleHash(string)
-		// do whats necesary for doublehashing
-		//at some point you're going to call hash() in here or do it in the class?
+        while( (line=br.readLine()) != null) 
+        {
+        	dh.doubleHash(line);
+        }
 	}
 
 	private void doSeperateChain ()
 	{
-		// do whats necesary for doublehashing
+		SeperateChain sc = new SeperateChain();
+		BufferedReader br = new BufferedReader(new FileReader(file));
+        String line=nul;
+
+        while( (line=br.readLine()) != null) 
+        {
+        	sc.seperateChain(line);
+        }
+		// do whats necesary for Seperate Chaining
 		//at some point you're going to call hash() in here or do it in the class?
 	}
 
@@ -87,23 +99,29 @@ public class Main
 	{
 		//just output all the statistics.
 		System.out.print("The hash table uses ");
-        if (algo == 1)
-            System.out.print(" separate chaining.");
+        if (algo == 'S')
+            System.out.print("separate chaining.");
         else
-            System.out.print(" double hashing open addressing scheme.");
-        System.out.println (" The empty marker scheme is ");
+            System.out.print("double hashing open addressing scheme.\n");
+
+        System.out.println ("\nThe empty marker scheme is ");
+
         if (markerScheme == 'R')
             System.out.print ("removing the duplicate index");
         else if (markerScheme == 'N')
             System.out.print ("using negative value of removed key as empty marker.");
         else if (markerScheme =='A')
-            System.out.print ("using A as empty marker.");
-        System.out.print(" The hash table is expanding by ");
-        if (expandByFactor == true)
-            System.out.print("a factor of " + expansionCoefficient);
+            System.out.print ("using AVAILABLE as empty marker.\n");
+
+        System.out.print("\nThe hash table is expanding by ");
+
+        Hash h = new Hash();
+        if (h.expandByFactor)
+            System.out.print("a factor of " + h.EXPAND_FACTOR_VARIABLE);
         else
-            System.out.print("a constant number of " + expansionLength + " elements");
-        System.out.print(" when a load factor of " + loadFactor + " is reached." );
+            System.out.print("a constant number of " + h.EXPAND_BY_NUMBER_VARIABLE + " elements");
+        
+        System.out.print(" when a load factor of " + h.LOAD_FACTOR + " is reached." );
 	}
 
 }
