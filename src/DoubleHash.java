@@ -1,8 +1,8 @@
 public class DoubleHash{
 
-	private void DoubleHash (){}
+	public void DoubleHash (){};
 
-	private char emptyMarkerScheme='';
+	private char emptyMarkerScheme=null;
 
 	public void doubleHash(String s) {
 		Hash h = new Hash();
@@ -47,7 +47,7 @@ public class DoubleHash{
         return newIndex;
     }
 
-    private setEmptyMarkerScheme(char type)
+    private String setEmptyMarkerScheme(String type)
     {
     	this.emptyMarkerScheme = type;
     }

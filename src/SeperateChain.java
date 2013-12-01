@@ -1,15 +1,16 @@
 public class SeperateChain 
 {
 	
-	private void SeperateChain(){}
+	public void SeperateChain(){}
 
 	
-	public void seperateChain()
+	public String seperateChain(String s)
 	{
+		return s;
 		// in here we will do the steps for the algorithm
 	}
 
-	private void makeNewList(List l)
+	private void makeNewList(String[] l)
 	{
 		//in here we will make a new list for the colided key
 	}

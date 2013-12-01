@@ -11,9 +11,8 @@ public class Main
 	private Scanner kb = new Scanner(System.in);
 	private String algo="";
 	private String file = "../hash_test_file1.txt";
-	public char collisionHandlingType="";
+	public String collisionHandlingType="";
 	private boolean loop=false;
-	//private Table 
 
 	public void main (String[] args) 
 	{
@@ -35,7 +34,7 @@ public class Main
 			}
 			
 			algo = kb.nextLine();
-		}while(algo!='D' || algo!='S');
+		}while(algo!="D" || algo!="S");
 
 		loadFile(file);
 
@@ -65,7 +64,7 @@ public class Main
 
 	private void doDoubleHashing ()
 	{
-		DoublHash dh = new DoublHash();
+		DoubleHash dh = new DoubleHash();
 		System.out.println("What kind of empty marker scheme would you like to use: \n" +
 	                       "Available = 'A', \n" +
 	                       "Negative = 'N', \n" +
@@ -85,7 +84,7 @@ public class Main
 	{
 		SeperateChain sc = new SeperateChain();
 		BufferedReader br = new BufferedReader(new FileReader(file));
-        String line=nul;
+        String line=null;
 
         while( (line=br.readLine()) != null) 
         {
@@ -97,25 +96,28 @@ public class Main
 
 	private void printHashtableStatistics()
 	{
+		Hash h = new Hash();
+		DoubleHash dh = new DoubleHash();
+
+
 		//just output all the statistics.
 		System.out.print("The hash table uses ");
-        if (algo == 'S')
+        if (algo == "S")
             System.out.print("separate chaining.");
         else
             System.out.print("double hashing open addressing scheme.\n");
 
         System.out.println ("\nThe empty marker scheme is ");
 
-        if (markerScheme == 'R')
+        if (dh.emptyMarkerScheme == "R")
             System.out.print ("removing the duplicate index");
-        else if (markerScheme == 'N')
+        else if (dh.emptyMarkerScheme == "N")
             System.out.print ("using negative value of removed key as empty marker.");
-        else if (markerScheme =='A')
+        else if (dh.emptyMarkerScheme =="A")
             System.out.print ("using AVAILABLE as empty marker.\n");
 
         System.out.print("\nThe hash table is expanding by ");
 
-        Hash h = new Hash();
         if (h.expandByFactor)
             System.out.print("a factor of " + h.EXPAND_FACTOR_VARIABLE);
         else

@@ -3,13 +3,15 @@ public class Hash{
 	private int nHash;
 	private int rehashFactor=1;
 	private int elementsInTable=97;
-	private double table[elementsInTable];
 	private boolean expandByFactor=true;
 	public final int EXPAND_FACTOR_VARIABLE=2;
 	public final int EXPAND_BY_NUMBER_VARIABLE=100;
 	public final int LOAD_FACTOR=.8;
 
-	private void Hash(){}
+	private void Hash()
+	{
+		private double table[elementsInTable];
+	}
 
 	public double hash(String str)
 	{
@@ -39,7 +41,7 @@ public class Hash{
             {
                 if (this.table[key] == null)
                 {
-		            this.table[key] = ;
+		            this.table[key] = value;
 		        }
 		        else 
 		        {
@@ -48,13 +50,13 @@ public class Hash{
 		            {
 		                currentNode = currentNode.next;
 		            }
-		            currentNode.next = s;
+		            currentNode.next = value;
 		        }
 		        ++elementsInTable;
             }
         }
         else
-            put (value, (h.hash % table.length);
+            put (value, (h.hash % table.length));
         }
 	}
 
