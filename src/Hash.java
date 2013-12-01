@@ -1,6 +1,7 @@
 public class Hash{
 	
 	private int nHash;
+	private int rehashFactor=1;
 	private int elementsInTable=97;
 	private double table[elementsInTable];
 	private boolean expandByFactor=true;
@@ -66,7 +67,7 @@ public class Hash{
 
 	private void setRehashFactor(int factorOrNumber)
 	{
-
+		rehashFactor = factorOrNumber;
 	}
 
 	private void rehash (int size)
