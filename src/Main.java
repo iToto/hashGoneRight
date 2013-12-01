@@ -73,7 +73,7 @@ public class Main
 	                       "Selection: ");
         dh.setEmptyMarkerScheme(kb.nextLine());
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line=nul;
+        String line=null;
 
         while( (line=br.readLine()) != null) 
         {

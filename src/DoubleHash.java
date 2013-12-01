@@ -10,15 +10,13 @@ public class DoubleHash{
         int hv1 = hv1(key);
         int hv2 = hv2(key);
 
-        if ( table[hv1] == null)
+        if ( h.table[hv1] == null)
         {
             h.put (s, hv1);
-            //return hv1;
         }
         else
         {   
-            insert (s, collision(key, hv2));
-            //return  collision(key, hv2);
+           h.put (s, collision(key, hv2));
         }
     }
 
@@ -40,11 +38,12 @@ public class DoubleHash{
     private int collision(int hv1, int hv2){
         int i = 0;
         int newIndex = 0;
+        Hash h = new Hash();
         do{
             collisionCounter++;
             ++i;
-            newIndex = (hv1+(i*hv2)) % table.length;
-        }while(table[newIndex] != null && i < table.length);
+            newIndex = (hv1+(i*hv2)) % h.table.length;
+        }while(h.table[newIndex] != null && i < h.table.length);
         return newIndex;
     }
 

@@ -1,11 +1,12 @@
 public class Hash{
 	
 	private int nHash;
-	private double table[97];
+	private int elementsInTable=97;
+	private double table[elementsInTable];
 	private boolean expandByFactor=true;
-	private final int EXPAND_FACTOR_VARIABLE=2;
-	private final int EXPAND_BY_NUMBER_VARIABLE=100;
-	private final int LOAD_FACTOR=1.2;
+	public final int EXPAND_FACTOR_VARIABLE=2;
+	public final int EXPAND_BY_NUMBER_VARIABLE=100;
+	public final int LOAD_FACTOR=.8;
 
 	private void Hash(){}
 
@@ -24,7 +25,6 @@ public class Hash{
 	{
 		Main get = new Main();
 		Hash currentNode = null;
-		//todo1: check state of table for resize
 		if (elementsInTable+1 > table.length*loadFactor) 
 		{
             if (expandByFactor)
@@ -32,15 +32,13 @@ public class Hash{
             else
                 this.table = resizeArray(this.table, this.table.length+EXPAND_BY_NUMBER_VARIABLE);
         }
-        //todo2: insert into table.
         if (key == 0)
         {
-            if ( get.collisionHandlingType == 'S' ){
-                //insert (s, (s.hash() & 0x7fffffff) % table.length);
+            if ( get.collisionHandlingType == 'S' )
+            {
                 if (this.table[key] == null)
                 {
 		            this.table[key] = ;
-		            // System.out.println( "inserted!!!  " +i);
 		        }
 		        else 
 		        {
@@ -53,17 +51,9 @@ public class Hash{
 		        }
 		        ++elementsInTable;
             }
-
-            else if (get.collisionHandlingType == 'D')
-                //System.out.println( "before doubleHash" );
-                doubleHash(s);
-            else
-            {
-            	throwException("did not establish a collision algorthm")
-            }
         }
         else
-            insert (s, (s.hash & 0x7fffffff) % table.length);
+            put (value, (h.hash % table.length);
         }
 	}
 
@@ -82,8 +72,6 @@ public class Hash{
 	private void rehash (int size)
 	{
 		double temp[] = table;
-		table = null;
-		System.gc();
         Hash table = new Hash[size];
         for (int i = 0; i < temp.length; ++i) {
             if (table[i] != null)
