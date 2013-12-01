@@ -1,0 +1,4 @@
+hashGoneRight
+=============
+
+Latest Hashing Function
