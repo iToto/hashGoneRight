@@ -1,3 +1,9 @@
+/*
+	Alex D'Agostino - 6316417
+	Assignment 3 - Hashing
+	This program asks the user which hashing algorith they wish to use.
+	it then uses a file of strings to show the speed of each algorithm.
+*/
 import java.lang.Math;
 public class SeperateChain
 {
@@ -17,17 +23,21 @@ public class SeperateChain
 	}
 
 
+
+	// initiates seperate chaining algorithm.
 	public void seperateChain(String s)
 	{
 		int key = this.hash(s);
-		//System.out.println("Got " + key + " from hash.");
-		// System.out.println("Got " + table.length + " as a table length.");
 		key = key % this.table.length;
-		//System.out.println("Got " + key + " from modding.");
         Node newNode = new Node(s,key);
 		put (newNode, key);
 	}
 
+
+
+	// inserts the string into the appropriate key of the hashtable
+	// if collision occurs, we make a linked listat that key and
+	// insert into that list.
 	private void put(Node value, int key)
     {
 
@@ -54,6 +64,8 @@ public class SeperateChain
     }
 
 
+
+    // makes a new, bigger array and rehashes all elemens into the new array
     private void rehash ()
     {
     	int newSize;
@@ -74,24 +86,20 @@ public class SeperateChain
         	{
         		this.seperateChain(old[i].value);
         	}
-            // TODO Call double hash insrt with old[i] into table[]
         }
         old = null;
     }
 
 
+
+    // gives a string a number to be used as a hash key
     private int hash(String str)
     {
         int nHash=7;
-        //System.out.println("----- Hashing string ! " + str + " -----");
-        //System.out.println("----- with length: " + str.length() + " -----");
-        
         for (int i=0; i < str.length(); i++)
         {
             nHash = Math.abs(nHash*31+str.charAt(i));
         }
-        //System.out.println("----- Converted to: " + nHash + " -----");
-        
         return nHash;
     }
 

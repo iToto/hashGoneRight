@@ -1,3 +1,9 @@
+/*
+	Alex D'Agostino - 6316417
+	Assignment 3 - Hashing
+	This program asks the user which hashing algorith they wish to use.
+	it then uses a file of strings to show the speed of each algorithm.
+*/
 import java.lang.Math;
 
 public class DoubleHash{
@@ -15,8 +21,11 @@ public class DoubleHash{
 	public DoubleHash ()
 	{
 		this.table = new String[100];
-	};
+	}
 
+
+
+	//initiates the doublehash algorithm. sets up all vriables needed
 	public void doubleHash(String s) 
 	{
         int key = this.hash(s);
@@ -29,21 +38,21 @@ public class DoubleHash{
         }
         else
         {
-			// System.out.println("Collided");
            	this.put (s, collision(key, hv2));
         }
     }
 
 
+
+    // creates first key for hash table
     private int hv1(int i)
     {
-    	// System.out.println("----- i! " + i + " -----");
-    	// System.out.println("----- table length ! " + this.table.length + " -----");
-    	// System.out.println("----- i mod ! " + i % this.table.length + " -----");
     	return i % this.table.length;
     }
 
 
+
+    // hv2 is used if the first key got a collision.
     private int hv2(int i){
         DoubleHashPrime prime = new DoubleHashPrime();
         int primeNum1 = prime.findPerfectPrime(this.table.length);
@@ -53,6 +62,9 @@ public class DoubleHash{
     }
 
 
+
+    // collision achieved, use second key, and then itirate through
+    // until an open spot is achieved.
     private int collision(int hv1, int hv2)
     {
         int i = 0;
@@ -66,41 +78,36 @@ public class DoubleHash{
         return newIndex;
     }
 
+
+
+    // sets the empty marker scheme.
     public void setEmptyMarkerScheme(char type)
     {
     	this.emptyMarkerScheme = type;
     }
 
 
+
+    // puts the string into the appropriate hashtable key location.
     private void put(String value, int key)
     {
-    	// System.out.println("----- table * loadfactor ! " + this.table.length*loadFactor + " -----");
-    	// System.out.println("----- elements in table  ! " + elementsInTable + " -----");
-
-
-        if (elementsInTable+1 > this.table.length*loadFactor)
+    	if (elementsInTable+1 > this.table.length*loadFactor)
         {
             this.rehash();
         }
-     //    System.out.println("----- I'm inserting here: "+key+" -----");
-    	// System.out.println("----- table lenth ! " + this.table.length + " -----");
         this.table[key] = value;
-        // System.out.println("----- Array index Post Insert ! " + this.table[key] + " -----");
         ++elementsInTable;
     }
 
 
+
+    // makes a new, bigger array and rehashes all elemens into the new array
     private void rehash ()
     {
     	int newSize;
     	if (expandByFactor)
     	{
-    	// System.out.println("----- table lenth ! " + this.table.length + " -----");
-
     	    newSize = this.table.length*EXPAND_FACTOR_VARIABLE;
-
-    	// System.out.println("----- NEW table lenth ! " + newSize + " -----");
-
     	}
     	else
     	{
@@ -114,32 +121,20 @@ public class DoubleHash{
         	{
         		this.doubleHash(old[i]);
         	}
-            // TODO Call double hash insrt with old[i] into table[]
         }
         old = null;
     }
 
 
-    private void setRehashFactor(int factorOrNumber)
-    {
-        rehashFactor = factorOrNumber;
-    }
 
+    // gives a string a number to be used as a hash key
     private int hash(String str)
     {
         int nHash=7;
-        // System.out.println("----- Hashing string ! " + str + " -----");
-        // System.out.println("----- with length: " + str.length() + " -----");
-        
         for (int i=0; i < str.length(); i++)
         {
             nHash = Math.abs(nHash*31+str.charAt(i));
         }
-        // System.out.println("----- Converted to: " + nHash + " -----");
-        
         return nHash;
     }
-
-
-
 }

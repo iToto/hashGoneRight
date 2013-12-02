@@ -1,10 +1,16 @@
+/*
+    Alex D'Agostino - 6316417
+    Assignment 3 - Hashing
+    This program asks the user which hashing algorith they wish to use.
+    it then uses a file of strings to show the speed of each algorithm.
+*/
 import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-
+// class that initiates the algorithms.
 public class DoProgram
 {
 
@@ -24,6 +30,8 @@ public class DoProgram
     }
 
 
+
+    // begine the program that user will use.
     public void doProgram()
     {
         do
@@ -49,8 +57,6 @@ public class DoProgram
 
         }while(algo != 'D' && algo != 'S');
 
-        //loadFile(file);
-
         if (algo == 'D')
         {
             setCollisionHandlingType(algo);
@@ -64,11 +70,17 @@ public class DoProgram
 
     }
 
+
+
+    // sets collision handling type.
     private void setCollisionHandlingType(char k)
     {
         collisionHandlingType = k;
     }
 
+
+
+    // if doublehashing is selected, go to this function.
     private void doDoubleHashing ()
     {
         double start= 0;
@@ -89,7 +101,6 @@ public class DoProgram
         }catch(FileNotFoundException e){
             System.err.println("Caught FileNotFoundException: " + e.getMessage());
             return;
-            //System.exit;
         }
         String line=null;
 
@@ -100,12 +111,9 @@ public class DoProgram
             while( line != null)
             {
                 ++lines;
-                //System.out.println("\n\n\n----- inserting THIS::: ! " + line + " -----");
                 dh.doubleHash(line);
-                //System.out.println("----- Insert Done for ::: ! " + line + " -----");
                 line=br.readLine();
                 System.out.println("%" + (lines/235886)*100 + " complete!");
-                //System.out.println("----- Next line will be ::: ! " + line + " -----");
             }
             end = System.nanoTime();
         }catch(IOException e)
@@ -122,6 +130,8 @@ public class DoProgram
 
 
 
+
+    // iF Seperate Chaining is selected, go to this function.
     private void doSeperateChain ()
     {
         double start = 0;
@@ -143,7 +153,6 @@ public class DoProgram
             start = System.nanoTime();
             while( line != null)
             {
-                //System.out.println("\n\n\n----- inserting THIS::: ! " + line + " -----");
                 sc.seperateChain(line);
                 line=br.readLine();
             }
@@ -159,7 +168,7 @@ public class DoProgram
     }
 
 
-
+    // Double Hash statistics.
     public void printHashtableStatisticsDH(DoubleHash dh)
     {
         System.out.print("The hash table uses ");
@@ -188,6 +197,7 @@ public class DoProgram
 
 
 
+    // Seperate Chaining statistics.
     public void printHashtableStatisticsSC(SeperateChain sc)
     {
         System.out.print("The hash table uses ");
