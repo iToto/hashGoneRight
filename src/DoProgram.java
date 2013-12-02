@@ -38,17 +38,18 @@ public class DoProgram
         {
             if (loop)
             {
-                System.out.println("Welcome to my Hashing program. " +
-                               "\n For Double-Hashing type 'D'," +
-                               " for Seperate-Chaining type 'S'. ");
+                System.out.println("Welcome to my Hashing program." +
+                               "\nFor Double-Hashing type 'D'." +
+                               "\nFor Seperate-Chaining type 'S'. \n" +
+                               "Algorithm selection: ");
                 loop = !loop;
             }
             else
             {
-                System.out.println("You've input something that is not either 'D' or 'S'. \n" +
-                               "For Double-Hashing type 'D', \n" +
-                               " for Seperate-Chaining type 'S'. \n" +
-                               "Algorithm Slection: ");
+                System.out.println("You've input something that is not either 'D' or 'S'." +
+                               "\nFor Double-Hashing type 'D'," +
+                               "\nFor Seperate-Chaining type 'S'. \n" +
+                               "Algorithm selection: ");
             }
 
             algo = kb.next().charAt(0);
@@ -87,13 +88,32 @@ public class DoProgram
         double end= 0;
         double time= 0;
         DoubleHash dh = new DoubleHash();
-        System.out.println("What kind of empty marker scheme would you like to use: \n" +
+        loop = !loop;
+        char set;
+        do
+        {
+            if (loop)
+            {
+                System.out.println("What kind of empty marker scheme would you like to use: \n" +
                            "Available = 'A', \n" +
                            "Negative = 'N', \n" +
                            "Replace = 'R'. \n" +
                            "Selection: ");
-        char set;
-        set = kb.next().charAt(0);
+                loop = !loop;
+            }
+            else
+            {
+                System.out.println("I'm sorry, you input something that is not correct. Please input one of the following: \n" +
+                           "Available = 'A', \n" +
+                           "Negative = 'N', \n" +
+                           "Replace = 'R'. \n" +
+                           "Selection: ");
+            }
+            
+            
+            set = kb.next().charAt(0);    
+        }while (set != 'A' && set != 'N' && set != 'R');
+        
         dh.setEmptyMarkerScheme(set);
         BufferedReader br = null;
         try{
